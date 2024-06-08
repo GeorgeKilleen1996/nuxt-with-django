@@ -2,6 +2,7 @@
 import type { LoginDetails } from '../../types/auth/LoginDetails';
 
 const loading = ref(false);
+const errorMessage = ref('');
 
 const login = async (loginDetails: LoginDetails) => {
   loading.value = true;
@@ -14,15 +15,17 @@ const login = async (loginDetails: LoginDetails) => {
       onResponse: (data) => {
         const token = data.response._data;
         console.log(token)
-        loading.value = false;
       },
       onRequestError: (error) => {
         console.error(error);
       },
       onResponseError: (error) => {
-        console.error(error);
+        if(error.response.status === 404){
+          errorMessage.value = 'Incorrect login details.';
+        }
       },
     });
+    loading.value = false;
 }
 </script>
 
@@ -33,6 +36,10 @@ const login = async (loginDetails: LoginDetails) => {
               <div class="w-20 h-20 rounded-full border"></div>
               <h1 class="text-2xl font-bold text-center mt-2">Welcome back!</h1>
               <span class="text-sm font-light text-center">Enter your email and password to login.</span>
+            </div>
+            <div class="flex justify-center items-center text-center text-xs h-6">
+              <UISpinner v-if="loading" />
+              <span class="text-red-500" v-if="errorMessage && !loading">{{ errorMessage }}</span>
             </div>
             <AuthLoginForm @login="login" />
             <div class="flex flex-col text-xs text-center">
