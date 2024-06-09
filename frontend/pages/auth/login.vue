@@ -30,7 +30,7 @@ const login = async (loginDetails: LoginDetails) => {
 </script>
 
 <template>
-    <div class="w-full h-[calc(100vh-3.5rem)] flex justify-center items-center">
+    <div class="w-full h-[calc(100vh-3.75rem)] flex justify-center items-center">
         <div class="w-full max-w-sm border shadow-xs rounded p-4 flex flex-col gap-4 items-center">
             <div class="w-full flex flex-col items-center">
               <div class="w-20 h-20 rounded-full border"></div>
