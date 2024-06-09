@@ -41,7 +41,7 @@ const login = async (loginDetails: LoginDetails) => {
               <UISpinner v-if="loading" />
               <span class="text-red-500" v-if="errorMessage && !loading">{{ errorMessage }}</span>
             </div>
-            <AuthLoginForm @login="login" />
+            <AuthLoginForm @login="login" :loading="loading" />
             <div class="flex flex-col text-xs text-center">
               <span>Don't have an account? <NuxtLink to="/auth/register">Register here</NuxtLink>.</span>
               <span>Can't login? <NuxtLink to="/auth/reset-password">Reset your password</NuxtLink>.</span>
