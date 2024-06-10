@@ -13,8 +13,7 @@ const token = useCookie('is_logged_in_token');
                 <NuxtLink to="/auth/register" class="text-sm">Register</NuxtLink>
             </div>
             <div class="flex items-center gap-4" v-else>
-                <button class="w-9 h-9 rounded flex justify-center items-center">
-                    <Icon name="ion:person" />
+                <button type="button" name="UserMenuButton" class="w-9 h-9 rounded flex justify-center items-center">
                 </button>
             </div>
         </div>
