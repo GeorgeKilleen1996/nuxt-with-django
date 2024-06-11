@@ -3,7 +3,7 @@ const token = useCookie('is_logged_in_token');
 </script>
 
 <template>
-    <div class="flex-1 h-14 border-b">
+    <div class="flex-1 h-14 border-b border-tertiary">
         <div class="flex items-center justify-between h-full container mx-auto px-4 md:px-0">
             <div class="flex items-center gap-4">
                 <NuxtLink to="/" class="text-xl font-bold">NuxtJS</NuxtLink>
@@ -13,7 +13,7 @@ const token = useCookie('is_logged_in_token');
                 <NuxtLink to="/auth/register" class="text-sm">Register</NuxtLink>
             </div>
             <div class="flex items-center gap-4" v-else>
-                <button type="button" name="UserMenuButton" class="w-9 h-9 rounded flex justify-center items-center">
+                <button type="button" name="UserMenuButton" class="w-9 h-9 rounded flex justify-center items-center hover:text-primary hover:bg-primary-10 text-secondary-light">
                     <Icon name="ion:person" />
                 </button>
             </div>
