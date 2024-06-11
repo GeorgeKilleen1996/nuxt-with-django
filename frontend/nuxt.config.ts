@@ -4,7 +4,7 @@ import type { NuxtPage } from 'nuxt/schema'
 export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "nuxt-icon"],
   runtimeConfig: {
     api: {
       apiUrl: process.env.API_URL || "http://localhost:8000/",

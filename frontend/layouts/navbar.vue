@@ -14,6 +14,7 @@ const token = useCookie('is_logged_in_token');
             </div>
             <div class="flex items-center gap-4" v-else>
                 <button type="button" name="UserMenuButton" class="w-9 h-9 rounded flex justify-center items-center">
+                    <Icon name="ion:person" />
                 </button>
             </div>
         </div>
