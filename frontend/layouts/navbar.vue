@@ -1,8 +1,14 @@
 <script setup lang="ts">
 
 const token = useCookie('is_logged_in_token');
+const router = useRouter();
 
 const userMenuOpen = ref(false);
+
+const logout = () => {
+    token.value = null;
+    router.push('/auth/login');
+}
 </script>
 
 <template>
@@ -17,11 +23,30 @@ const userMenuOpen = ref(false);
             </div>
             <div class="flex items-center gap-4" v-else>
                 <div class="relative">
-                    <button type="button" name="UserMenuButton" @click="userMenuOpen = !userMenuOpen" class="w-9 h-9 rounded flex justify-center items-center hover:text-primary hover:bg-primary-10 text-secondary-light">
+                    <button 
+                        type="button" 
+                        name="UserMenuButton" 
+                        @click="userMenuOpen = !userMenuOpen" 
+                        class="w-9 h-9 rounded flex justify-center items-center"
+                        :class="{'bg-primary-10 text-primary hover:text-primary-light' : userMenuOpen, 'hover:text-primary text-secondary-light': !userMenuOpen}">
                         <Icon name="ion:person" />
                     </button>
                     <Transition name="fade-down" mode="out-in">
-                        <UIPopover class="absolute -bottom-10 right-0 max-w-40" v-if="userMenuOpen"></UIPopover>
+                        <UIPopover class="w-40 flex flex-col gap-2 h-fit absolute top-[calc(100%+0.25rem)] right-0" v-if="userMenuOpen">
+                            <div class="w-full flex gap-2 items-center">
+                                <div class="w-8 h-8 rounded-full border border-tertiary overflow-hidden"></div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-primary">John Doe</span>
+                                    <span class="text-xs text-secondary-light">Role</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-0 border-b border-tertiary"></div>
+                            <div class="w-full h-0 border-b border-tertiary"></div>
+                            <button type="button" @click="logout" name="LogoutButton" class="flex gap-2 rounded hover:bg-primary-10 p-2.5 items-center hover:text-primary text-secondary-light w-full">
+                                <Icon name="ion:log-out" />
+                                <span class="text-xs">Sign Out</span>
+                            </button>
+                        </UIPopover>
                     </Transition>
                 </div>
             </div>
