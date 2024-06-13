@@ -51,6 +51,6 @@ const hasNext = (index: number) => index < props.navItems.length - 1;
 
 <style scoped>
 .navbar-transition {
-  transition: width 0.3s ease;
+  transition: width 0.15s ease-in-out;
 }
 </style>
