@@ -46,7 +46,7 @@ const navItems = [
 
 <template>
   <div class="w-screen h-screen flex"> 
-    <NuxtLayout name="sidebar" :navItems="navItems" />
+    <NuxtLayout name="sidebar" :navItems="navItems" v-if="token" />
     <div class="flex flex-col w-full">
       <NuxtLayout name="navbar" :class="{'md:ml-[3.5rem]' : token}" />
       <div class="px-4" :class="{'container mx-auto md:px-0' : !token, 'md:pl-[4.5rem]' : token}">
