@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const props = defineProps({
   navItems: {
     type: Array as PropType<Array<{
@@ -30,18 +31,7 @@ const hasNext = (index: number) => index < props.navItems.length - 1;
             <div class="h-14 w-full p-2.5 flex justify-start items-center"></div>
             <div class="flex-1 flex flex-col p-2 gap-2">
                 <template v-for="(items, index) in props.navItems" :key="index">
-                    <NuxtLink
-                        v-for="item in items.items"
-                        :to="item.to"
-                        :exact="item.exact"
-                        class="flex gap-2 rounded hover:bg-primary-10 p-2.5 items-center"
-                        :class="{'bg-primary-10 text-primary hover:text-primary-light' : item.active, 'hover:text-primary text-secondary-light': !item.active , 'w-full' : navOpen, 'w-9': !navOpen}"
-                    >
-                        <div class="flex-shrink-0 flex items-center">
-                            <Icon :name="item.icon" />
-                        </div>
-                        <span class="text-xs max-w-40 overflow-hidden truncate" v-if="navOpen">{{ item.title }}</span>
-                    </NuxtLink>
+                    <UIMenuLink v-for="item in items.items" :item="item" :navOpen="navOpen" />
                     <div class="w-full h-0 border-b border-tertiary" v-if="hasNext(index)"></div>
                 </template>
             </div>
