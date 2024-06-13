@@ -20,6 +20,7 @@ export default {
           DEFAULT: 'var(--theme-secondary)',
           light: 'var(--theme-secondary-light)',
           dark: 'var(--theme-secondary-dark)',
+          medium: 'var(--theme-secondary-medium)',
         },
         text: {
           DEFAULT: 'var(--theme-text)',
