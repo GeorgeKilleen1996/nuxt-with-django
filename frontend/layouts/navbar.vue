@@ -4,10 +4,12 @@ const token = useCookie('is_logged_in_token');
 const router = useRouter();
 
 const userMenuOpen = ref(false);
+const notificationMenuOpen = ref(false);
 
 const logout = () => {
     token.value = null;
     userMenuOpen.value = false;
+    notificationMenuOpen.value = false;
     router.push('/auth/login');
 }
 </script>
@@ -22,12 +24,38 @@ const logout = () => {
                 <NuxtLink to="/auth/login" class="text-sm">Login</NuxtLink>
                 <NuxtLink to="/auth/register" class="text-sm">Register</NuxtLink>
             </div>
-            <div class="flex items-center gap-4" v-else>
+            <div class="flex items-center gap-1" v-else>
                 <div class="relative">
                     <button 
                         type="button" 
                         name="UserMenuButton" 
-                        @click="userMenuOpen = !userMenuOpen" 
+                        @click="notificationMenuOpen = !notificationMenuOpen; userMenuOpen = false" 
+                        class="w-9 h-9 rounded flex justify-center items-center"
+                        :class="{'bg-primary-10 text-primary hover:text-primary-light' : notificationMenuOpen, 'hover:text-primary hover:bg-primary-10 text-secondary-light': !notificationMenuOpen}">
+                        <Icon name="ion:notifications" />
+                    </button>
+                    <Transition name="fade-down" mode="out-in">
+                        <UIPopover class="md:w-[30vw] w-[60vw] flex flex-col gap-2 h-fit absolute top-[calc(100%+0.25rem)] md:right-0 -right-10" v-if="notificationMenuOpen">
+                            <div class="p-2">
+                                <span class="text-xs text-primary">Notifications</span>
+                            </div>
+                            <div class="w-full h-0 border-b border-tertiary"></div>
+                            <div class="flex flex-col justify-center items-center p-4">
+                                <Icon name="ion:mail-open" class="text-2xl text-secondary-light" />
+                                <span class="text-xs text-secondary-light">It's looking a bit empty in here.</span>
+                            </div>
+                            <div class="w-full h-0 border-b border-tertiary"></div>
+                            <NuxtLink to="#" class="flex gap-2 rounded hover:bg-primary-10 p-2.5 items-center hover:text-primary text-secondary-light w-full text-center justify-center">
+                                <span class="text-xs">View All</span>
+                            </NuxtLink>
+                        </UIPopover>
+                    </Transition>
+                </div>
+                <div class="relative">
+                    <button 
+                        type="button" 
+                        name="UserMenuButton" 
+                        @click="userMenuOpen = !userMenuOpen; notificationMenuOpen = false" 
                         class="w-9 h-9 rounded flex justify-center items-center"
                         :class="{'bg-primary-10 text-primary hover:text-primary-light' : userMenuOpen, 'hover:text-primary hover:bg-primary-10 text-secondary-light': !userMenuOpen}">
                         <Icon name="ion:person" />
