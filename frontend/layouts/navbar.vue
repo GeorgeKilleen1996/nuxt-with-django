@@ -29,7 +29,7 @@ const logout = () => {
                         name="UserMenuButton" 
                         @click="userMenuOpen = !userMenuOpen" 
                         class="w-9 h-9 rounded flex justify-center items-center"
-                        :class="{'bg-primary-10 text-primary hover:text-primary-light' : userMenuOpen, 'hover:text-primary text-secondary-light': !userMenuOpen}">
+                        :class="{'bg-primary-10 text-primary hover:text-primary-light' : userMenuOpen, 'hover:text-primary hover:bg-primary-10 text-secondary-light': !userMenuOpen}">
                         <Icon name="ion:person" />
                     </button>
                     <Transition name="fade-down" mode="out-in">
