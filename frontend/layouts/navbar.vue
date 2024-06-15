@@ -6,6 +6,11 @@ const router = useRouter();
 const userMenuOpen = ref(false);
 const notificationMenuOpen = ref(false);
 
+const userMenuItems = [
+    { icon: 'ion:plus', title: 'Link 1', to: '#', exact: false, active: false },
+    { icon: 'ion:plus', title: 'Link 2', to: '#', exact: false, active: false }
+];
+
 const logout = () => {
     token.value = null;
     userMenuOpen.value = false;
@@ -61,7 +66,7 @@ const logout = () => {
                         <Icon name="ion:person" />
                     </button>
                     <Transition name="fade-down" mode="out-in">
-                        <UIPopover class="w-40 flex flex-col gap-2 h-fit absolute top-[calc(100%+0.25rem)] right-0" v-if="userMenuOpen">
+                        <UIPopover class="min-w-40 max-w-60 flex flex-col gap-2 h-fit absolute top-[calc(100%+0.25rem)] right-0" v-if="userMenuOpen">
                             <div class="w-full flex gap-2 items-center">
                                 <div class="w-8 h-8 rounded-full border border-tertiary overflow-hidden"></div>
                                 <div class="flex flex-col">
@@ -70,6 +75,9 @@ const logout = () => {
                                 </div>
                             </div>
                             <div class="w-full h-0 border-b border-tertiary"></div>
+                            <div class="flex flex-col">
+                                <UIMenuLink v-for="item in userMenuItems" :item="item" />
+                            </div>
                             <div class="w-full h-0 border-b border-tertiary"></div>
                             <button type="button" @click="logout" name="LogoutButton" class="flex gap-2 rounded hover:bg-primary-10 p-2.5 items-center hover:text-primary text-secondary-light w-full">
                                 <Icon name="ion:log-out" />
