@@ -7,6 +7,7 @@ const userMenuOpen = ref(false);
 
 const logout = () => {
     token.value = null;
+    userMenuOpen.value = false;
     router.push('/auth/login');
 }
 </script>
